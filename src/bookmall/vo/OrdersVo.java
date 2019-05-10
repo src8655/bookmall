@@ -7,6 +7,7 @@ public class OrdersVo {
 	private Long money;
 	private String addr;
 	private String ordersDate;
+	private String status;		//입금대기중, 배송준비, 배송중, 배송완료
 	
 	//고객(member)
 	private Long memberNo;
@@ -43,6 +44,12 @@ public class OrdersVo {
 	public void setOrdersDate(String ordersDate) {
 		this.ordersDate = ordersDate;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Long getMemberNo() {
 		return memberNo;
 	}
@@ -64,9 +71,8 @@ public class OrdersVo {
 	@Override
 	public String toString() {
 		return "OrdersVo [no=" + no + ", ordersCode=" + ordersCode + ", money=" + money + ", addr=" + addr
-				+ ", ordersDate=" + ordersDate + ", memberNo=" + memberNo + ", name=" + name + ", email=" + email + "]";
+				+ ", ordersDate=" + ordersDate + ", status=" + status + ", memberNo=" + memberNo + ", name=" + name
+				+ ", email=" + email + "]";
 	}
-	
-	
 	
 }

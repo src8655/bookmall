@@ -28,11 +28,12 @@ public class OrdersDao {
 					" (select concat(DATE_FORMAT(now(),\'%Y%m%d\'), \'_\', LPAD(count(a.orders_date)+1, 5, 0))" + 
 					" from orders a" + 
 					" where DATE_FORMAT(a.orders_date,\'%Y%m%d\') = DATE_FORMAT(now(),\'%Y%m%d\'))" + 
-					" , ?, ?, now(), ?)";
+					" , ?, ?, now(), ?, ?)";
 			pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setLong(1, vo.getMoney());
 			pstmt.setString(2, vo.getAddr());
-			pstmt.setLong(3, vo.getMemberNo());
+			pstmt.setString(3, vo.getStatus());
+			pstmt.setLong(4, vo.getMemberNo());
 			
 			pstmt.executeUpdate();
 			
@@ -177,7 +178,7 @@ public class OrdersDao {
 		try {
 			con = getConnection();
 			
-			String sql = "select a.no, a.orders_code, a.money, a.addr, DATE_FORMAT(a.orders_date,\'%Y년 %m월 %d일\'), a.member_no, b.name, b.email" + 
+			String sql = "select a.no, a.orders_code, a.money, a.addr, DATE_FORMAT(a.orders_date,\'%Y년 %m월 %d일\'), a.member_no, b.name, b.email, a.status" + 
 					" from orders a, member b" + 
 					" where a.member_no = b.no"
 					+ " order by a.orders_date desc";
@@ -194,6 +195,7 @@ public class OrdersDao {
 				vo.setMemberNo(rs.getLong(6));
 				vo.setName(rs.getString(7));
 				vo.setEmail(rs.getString(8));
+				vo.setStatus(rs.getString(9));
 				
 				result.add(vo);
 			}
@@ -224,7 +226,7 @@ public class OrdersDao {
 		try {
 			con = getConnection();
 			
-			String sql = "select a.no, a.orders_code, a.money, a.addr, DATE_FORMAT(a.orders_date,\'%Y년 %m월 %d일\'), a.member_no, b.name, b.email" + 
+			String sql = "select a.no, a.orders_code, a.money, a.addr, DATE_FORMAT(a.orders_date,\'%Y년 %m월 %d일\'), a.member_no, b.name, b.email, a.status" + 
 					" from orders a, member b" + 
 					" where a.member_no = b.no"
 					+ " and a.member_no = ?"
@@ -243,6 +245,7 @@ public class OrdersDao {
 				vo.setMemberNo(rs.getLong(6));
 				vo.setName(rs.getString(7));
 				vo.setEmail(rs.getString(8));
+				vo.setStatus(rs.getString(9));
 				
 				result.add(vo);
 			}

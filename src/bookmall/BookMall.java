@@ -124,7 +124,8 @@ public class BookMall {
 									+ "\t주문코드 : " + ordersVo.getOrdersCode()
 									+ "\t결제금액 : " + ordersVo.getMoney()
 									+ "\t배송지 : " + ordersVo.getAddr()
-									+ "\t주문일 : " + ordersVo.getOrdersDate());
+									+ "\t주문일 : " + ordersVo.getOrdersDate()
+									+ "\t상태 : " + ordersVo.getStatus());
 			}
 		}
 		
@@ -150,7 +151,8 @@ public class BookMall {
 									+ "\t주문코드 : " + ordersVo.getOrdersCode()
 									+ "\t결제금액 : " + ordersVo.getMoney()
 									+ "\t배송지 : " + ordersVo.getAddr()
-									+ "\t주문일 : " + ordersVo.getOrdersDate());
+									+ "\t주문일 : " + ordersVo.getOrdersDate()
+									+ "\t상태 : " + ordersVo.getStatus());
 				// 주문도서 리스트
 				List<OrdersBookVo> ordersBookList = ordersDao.getOrdersBookList(ordersVo.getNo());
 				for(OrdersBookVo obVo : ordersBookList) {

@@ -22,7 +22,7 @@ public class OrdersDaoTest {
 		obVo2.setCounts(2L);
 		list.add(obVo2);		//"태백산맥" 책 "2"권
 		
-		insertTest(0L,"의정부시 금오동", 1L, list);	//"윤민호"의 주문
+		insertTest(0L,"의정부시 금오동", 1L, "입금대기중", list);	//"입금대기중" 상태로 "윤민호"의 주문
 		
 		List<OrdersBookVo> list2 = new ArrayList<OrdersBookVo>();
 		OrdersBookVo obVo3 = new OrdersBookVo();
@@ -30,7 +30,7 @@ public class OrdersDaoTest {
 		obVo3.setCounts(32L);
 		list2.add(obVo3);		//"뉴문" 책 "32"권
 		
-		insertTest(0L,"양주시 은현면", 2L, list2);	//"장석준"의 주문
+		insertTest(0L,"양주시 은현면", 2L, "배송준비", list2);	//"배송준비" 상태로 "장석준"의 주문
 		
 		
 		//getList Test
@@ -38,7 +38,7 @@ public class OrdersDaoTest {
 		
 	}
 	//insert Test
-	public static boolean insertTest(Long money, String addr, Long memberNo, List<OrdersBookVo> list) {
+	public static boolean insertTest(Long money, String addr, Long memberNo, String status, List<OrdersBookVo> list) {
 		OrdersDao dao = new OrdersDao();
 		
 		//주문정보
@@ -46,6 +46,7 @@ public class OrdersDaoTest {
 		vo.setMoney(money);
 		vo.setAddr(addr);
 		vo.setMemberNo(memberNo);
+		vo.setStatus(status);
 		
 		//주문정보 추가 후 주문번호를 받는다
 		Long ordersNo = dao.insertOrders(vo);
